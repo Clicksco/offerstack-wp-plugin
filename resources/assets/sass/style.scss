@@ -1,0 +1,232 @@
+.offers__wrap {
+  
+  &:hover {
+    -webkit-box-shadow: 0 32px 30px -30px rgba(0,0,0,.2), 0 5px 15px 0 rgba(0,0,0,.1);
+    box-shadow: 0 32px 30px -30px rgba(0,0,0,.2), 0 5px 15px 0 rgba(0,0,0,.1);
+    -webkit-transition: .12s ease-out;
+    transition: .12s ease-out;
+  }
+
+  .data-table {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    max-width: 1024px;
+    background: #fff;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    margin-bottom: 10px;
+    border: 1px solid #d6d7d8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+  }
+
+  .data-table a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .col {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    width: 33.33333%;
+    padding: 14px;
+    justify-content: space-evenly;
+  }
+  .provider, .price {
+    width: 22%;
+    align-items: center;
+  }
+  .rrp {
+    text-decoration: line-through;
+  }
+  .saving {
+    background: #fff8ed;
+    padding: 2px 10px;
+  }
+  .provider {
+    border-right: 1px solid #d6d7d8;
+    position: relative;
+  }
+  .ribbon {
+    background: #8bc43f;
+    position: absolute;
+    top: 6px;
+    left: -9px;
+    padding: 2px 10px;
+    z-index: 10;
+    color: #fff !important;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .ribbon:before {
+    content: '';
+    position: absolute;
+    left: 0px;
+    bottom: -6px;
+    width: 0;
+    height: 0;
+    border: 3px solid #5d7d31;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    z-index: -1;
+    white-space: normal;
+  }
+  .price {
+    border-left: 1px solid #d6d7d8;
+  }
+  .detail {
+    width: 55%;
+    padding-bottom: 0px;
+  }
+  .detail p {
+    font-size: 14px;
+    color: #999;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .provider-logo {
+    max-width: 100px;
+  }
+  .holiday-img {
+    max-width: 124px;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .star-rating {
+    margin-top: 5px;
+    font-size: 13px;
+  }
+  .star-rating img {
+    margin-right: 5px;
+  }
+  .detail-title {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #6ab479;
+    cursor: pointer;
+  }
+  .detail-items {
+    padding: 0;
+    list-style-position: inside;
+    list-style-type: disc;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+  .detail-items li {
+    font-size: 14px;
+    margin-bottom: 10px;
+    padding-left: 40px;
+    list-style: none;
+    background: url(../images/check.svg) left 2px no-repeat;
+    background-size: 20px;
+  }
+  .detail-items li a {
+    color: #06f;
+  }
+  .deal-highlight {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #fff !important;
+    padding: 1px 8px;
+    border-radius: 3px;
+    background: #ff6c6c;
+  }
+  .price-content {
+    text-align: center;
+  }
+  .price-content span {
+    display: block;
+    color: #666;
+  }
+  .price-prefix {
+    font-size: 13px;
+    color: #999;
+  }
+  .deal-price {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  .deal-btn {
+    font-weight: 600;
+    display: -webkit-box;
+    display: flex;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: background-color .075s ease-out;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #6ab479;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .deal-btn:hover {
+    background-color: #71a031;
+  }
+
+  @media (max-width: 640px) {
+    .data-table {
+      flex-direction: column;
+    }
+    .col {
+      width: 100% !important;
+      padding: 15px 0;
+    }
+
+    .detail-title, .detail p, .detail-items {
+      margin: 0 15px;
+    }
+
+    .detail p {
+      margin-bottom: 10px;
+    }
+    .star-rating {
+      margin-left: 15px;
+    }
+    .provider {
+      border-bottom: 1px solid #d6d7d8;
+      border-right: none;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .price {
+      border-top: 1px solid #d6d7d8;
+      border-left: none;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+    .detail-items {
+      list-style-position: inside;
+      list-style-type: disc;
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+    }
+  }
+}
+
+
+
+//for side bar
+.offerstack-widget-sidebar {
+  .offers__wrap {
+    .col {
+      width: 100%;
+    }
+  }
+}

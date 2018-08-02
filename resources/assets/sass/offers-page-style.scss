@@ -1,0 +1,66 @@
+.offers-page__wrap {
+  position: relative;
+
+  .page-header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #ff9800;
+    width: 100%;
+
+    h2 {
+      line-height: 1.3;
+      font-size: 3rem;
+      max-width: 1024px;
+      margin: 0 auto;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    // header image
+    .header-image {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      background-size: cover!important;
+      margin-bottom: 5px;
+    }
+
+    // tab links
+    .tab-link-wrapper {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      bottom: -30px;
+      text-align: center;
+      z-index: 0;
+      .tab-link {
+        position: relative;
+        background-color: #ff9800;
+        padding: 10px 30px;
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+
+
+// with element add padding on top of content
+  &.header-heading-padding {
+    padding-top: 50px
+  }
+  &.header-tab-link-padding {
+    padding-top: 100px;
+  }
+  &.header-image-padding {
+    padding-top: 240px;
+  }
+
+
+  @media (max-width: 480px) {
+
+  }
+
+
+}
+
