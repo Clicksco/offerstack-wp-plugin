@@ -3,7 +3,7 @@
 * Plugin Name: OfferStack
 * Plugin URI: 
 * Description: We cover Vouchers, Deals, Offers and Click To Call campaigns.
-* Version: 1.0.0
+* Version: 1.0.1
 * Author: Clicksco
 * Author URI: offerstack.io
 * License: MIT
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 global $wpdb, $wp_version;
-define( 'PLUGIN_NAME_VERSION', '1.0.0' );
+define( 'OFFERSTACK_VERSION', '1.0.1' );
 
 
 
@@ -35,7 +35,7 @@ function offerstack_assets_files()
 	if (!is_admin())
 	{
 		//wp_register_style('offerstack_css', plugins_url('/public/css/app.css',__FILE__ ), '/style.css?ver=4.5.15');
-		wp_enqueue_style('offerstack', plugins_url('/public/css/app.css',__FILE__ ), array('bootstrap'), '1.0.0');		
+		wp_enqueue_style('offerstack', plugins_url('/public/css/app.css',__FILE__ ), array('bootstrap'), OFFERSTACK_VERSION);		
 	}
 }
 

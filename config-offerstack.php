@@ -9,6 +9,6 @@
 
 
 $offerstack_api_key="";
-$offerstack_api_endpoint="https://api.offerstack.io/v1/offers?query=".$offer_keyword.'&'.additional_param($widget_identifier);
+$offerstack_api_endpoint="https://api.offerstack.io/v1/offers?query=".urlencode($offer_keyword).'&'.additional_param($widget_identifier);
 
 ?>
