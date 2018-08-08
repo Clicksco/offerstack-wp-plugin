@@ -49,4 +49,4 @@ example
 
 
 TODO:
-- [ ] move offersApiKey to plugin settings   
+- [X] move offersApiKey to plugin settings   

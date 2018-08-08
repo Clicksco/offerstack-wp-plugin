@@ -5,5 +5,6 @@ elixir(function(mix) {
     .sass([
         'offers-page-style.scss',
         'style.scss'
-    ]);
+    ])
+    .copy('resources/assets/images', 'public/images', false);
 });
