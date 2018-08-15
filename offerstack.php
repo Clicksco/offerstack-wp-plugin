@@ -43,6 +43,7 @@ function offerstack_assets_files()
 		$selected_theme = (is_null($selected_theme) ? 'theme-default' : $selected_theme);
 		
 		wp_enqueue_style('offerstack', plugins_url('/public/css/'.$selected_theme.'/index.css',__FILE__ ), array('bootstrap'), OFFERSTACK_VERSION);	
+		wp_enqueue_script('offerstack', plugins_url('/public/js/'.$selected_theme.'/app.js',__FILE__ ), array('jquery'), OFFERSTACK_VERSION, true);	
 		
 	}
 }
