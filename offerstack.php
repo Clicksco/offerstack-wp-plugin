@@ -3,7 +3,7 @@
 * Plugin Name: OfferStack
 * Plugin URI: 
 * Description: We cover Vouchers, Deals, Offers and Click To Call campaigns.
-* Version: 1.0.1
+* Version: 1.1.1
 * Author: Clicksco
 * Author URI: offerstack.io
 * License: MIT
@@ -16,7 +16,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 global $wpdb, $wp_version;
-define( 'OFFERSTACK_VERSION', '1.0.1' );
+define( 'OFFERSTACK_VERSION', '1.1.1' );
 
 
 /**
@@ -38,8 +38,12 @@ function offerstack_assets_files()
 {			
 	if (!is_admin())
 	{
-		//wp_register_style('offerstack_css', plugins_url('/public/css/app.css',__FILE__ ), '/style.css?ver=4.5.15');
-		wp_enqueue_style('offerstack', plugins_url('/public/css/app.css',__FILE__ ), array('bootstrap'), OFFERSTACK_VERSION);		
+
+		$selected_theme = esc_attr( get_option('offers_theme') );
+		$selected_theme = (is_null($selected_theme) ? 'theme-default' : $selected_theme);
+		
+		wp_enqueue_style('offerstack', plugins_url('/public/css/'.$selected_theme.'/index.css',__FILE__ ), array('bootstrap'), OFFERSTACK_VERSION);	
+		
 	}
 }
 
@@ -71,6 +75,7 @@ function offerstack_settings_page() {
 add_action( 'admin_init', function() {
 	register_setting( 'offerstack-settings', 'offer_keyword' );
 	register_setting( 'offerstack-settings', 'api_key' );
+	register_setting( 'offerstack-settings', 'offers_theme' );
 });
 
 
@@ -99,7 +104,10 @@ function get_offers_listing($offer_keyword, $widget_identifier, $max_iteams, $is
 
 	if($offers_listing != '') {
 		ob_start();
-			include plugin_dir_path( __FILE__ ).'/templates/offers_listing.php';
+			$selected_theme = esc_attr( get_option('offers_theme') );
+			$selected_theme = (is_null($selected_theme) ? 'theme-default' : $selected_theme);
+			
+			include plugin_dir_path( __FILE__ ).'/templates/'.$selected_theme.'.php';
 		return ob_get_clean();		
 	}		
 }

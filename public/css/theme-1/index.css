@@ -1,0 +1,142 @@
+.offerstack-widget {
+  background: #e7f6ea;
+  padding: 80px 10px;
+}
+
+.offerstack-widget .offers--wrap {
+  position: relative;
+  width: 32%;
+  height: auto;
+  display: inline-block;
+  vertical-align: top;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.offerstack-widget .offers--wrap:hover {
+  border: 3px solid #4cbb63;
+  box-shadow: 0px 4px 14px 0px #71c983;
+}
+
+.offerstack-widget .offers--wrap:nth-child(2) {
+  margin: 0px 1%;
+}
+
+.offerstack-widget .offers--wrap .offer__image {
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.offerstack-widget .offers--wrap .offer__image img {
+  width: 100%;
+}
+
+.offerstack-widget .offers--wrap .provider__logo {
+  position: absolute;
+  left: 20px;
+  top: 80px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #a9a8a9;
+  background: #fff;
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.offerstack-widget .offers--wrap .provider__logo img {
+  width: 100%;
+}
+
+.offerstack-widget .offers--wrap .offer--detail {
+  padding: 20px;
+  height: 300px;
+  background: #fff;
+  border-right: 1px solid #a9a8a9;
+  border-left: 1px solid #a9a8a9;
+  overflow: hidden;
+}
+
+.offerstack-widget .offers--wrap .offer--detail .offer-title {
+  color: #4cbb63;
+  font-size: 20px;
+  line-height: 22px;
+}
+
+.offerstack-widget .offers--wrap .offer--detail .offer-desc {
+  font-size: 16px;
+  line-height: 22px;
+  color: #686868;
+}
+
+.offerstack-widget .offers--wrap .offer--footer {
+  width: 100%;
+  background: #eff9f1;
+  padding: 5px;
+  border: 1px solid #a9a8a9;
+  padding: 20px;
+  text-align: center;
+}
+
+.offerstack-widget .offers--wrap .offer--footer div {
+  text-align: center;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.offerstack-widget .offers--wrap .offer--footer .price {
+  color: #8d8d8d;
+  font-size: 14px;
+}
+
+.offerstack-widget .offers--wrap .offer--footer .price .amount {
+  color: #4cbb63;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.offerstack-widget .offers--wrap .offer--footer .detail-btn {
+  background: #4cbb63;
+  color: #fff;
+  font-size: 14px;
+  padding: 2px 18px;
+  margin-left: 1%;
+}
+
+.offerstack-widget .offers--wrap .ribbon {
+  position: absolute;
+  left: -5px;
+  top: 30px;
+  background: #4cbb63;
+  color: #fff;
+  width: 60px;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.offerstack-widget .offers--wrap .ribbon:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: -15px;
+  display: block;
+  border: 10px solid #4cbb63;
+  border-right-color: transparent;
+}
+
+.offerstack-widget .offers--wrap .ribbon:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 0;
+  height: 0;
+  border: 3px solid #4cbb63;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  white-space: normal;
+}
+
+/*# sourceMappingURL=index.css.map */
