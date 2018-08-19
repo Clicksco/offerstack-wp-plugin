@@ -58,7 +58,13 @@ if(($key+1) % 3 == 1) {
             <div class="detail-btn">See Deals</div>
         </div>
     </div>
-    <div class="ribbon">50%</div>
+    <?php
+    if((int)$offer['price']['saving'] > 0) {
+        ?>
+        <div class="ribbon">save: <?php echo floor(($offer['price']['saving'] * 100) / $offer['price']['rrp']) ?>%</div>
+        <?php
+    }
+    ?>
 </a>
 <?php 
 }
