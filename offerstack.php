@@ -1,9 +1,9 @@
 <?php
 /**
-* Plugin Name: OfferStack
+* Plugin Name: Clicksco OfferStack
 * Plugin URI: 
 * Description: We cover Vouchers, Deals, Offers and Click To Call campaigns.
-* Version: 1.1.1
+* Version: 1.2.1
 * Author: Clicksco
 * Author URI: offerstack.io
 * License: MIT
@@ -16,25 +16,25 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 global $wpdb, $wp_version;
-define( 'OFFERSTACK_VERSION', '1.1.1' );
+define( 'OFFERSTACK_VERSION', '1.2.1' );
 
 
 /**
 * Add shortcode
 */
-add_shortcode('offerstack', 'offers_listing');
-function offers_listing($atts)
+add_shortcode('offerstack', 'offers_listing_cos');
+function offers_listing_cos($atts)
 {	
 	extract( shortcode_atts( array('offers_keyword' => 'lego', 'widget_identifier' => '', 'max_iteams' => '', 'is_sidebar'=> ''), $atts ) );
-	return get_offers_listing($offers_keyword, $widget_identifier, $max_iteams, $is_sidebar);
+	return get_offers_listing_cos($offers_keyword, $widget_identifier, $max_iteams, $is_sidebar);
 }
 
 
 /**
 * enquee assets
 */
-add_action('wp_enqueue_scripts','offerstack_assets_files');
-function offerstack_assets_files()
+add_action('wp_enqueue_scripts','offerstack_assets_files_cos');
+function offerstack_assets_files_cos()
 {			
 	if (!is_admin())
 	{
@@ -52,12 +52,12 @@ function offerstack_assets_files()
 /**
 * links added in plugin page
 */
-add_filter("plugin_action_links_".plugin_basename(__FILE__), 'settings_link');
-function settings_link($links) {
-	$settings_link = '<a href="options-general.php?page=offerstack_plugin">Settings</a>';
-	array_push($links, $settings_link);
-	$settings_link = '<a title="get plugin api key" href="https://offerstack.io/" target="blank">Offerstack API</a>';
-	array_push($links, $settings_link);
+add_filter("plugin_action_links_".plugin_basename(__FILE__), 'settings_link_cos');
+function settings_link_cos($links) {
+	$settings_link_cos = '<a href="options-general.php?page=clicksco_offerstack_plugin">Settings</a>';
+	array_push($links, $settings_link_cos);
+	$settings_link_cos = '<a title="get plugin api key" href="https://offerstack.io/" target="blank">Offerstack API</a>';
+	array_push($links, $settings_link_cos);
 
 	return $links;
 }
@@ -66,11 +66,11 @@ function settings_link($links) {
 /**
 * OfferStack menu added in admin main menu
 */
-add_action('admin_menu', 'add_admin_pages');
-function add_admin_pages() {
-	add_menu_page('ABC Plugin', 'Offerstack', 'manage_options', 'offerstack_plugin', 'offerstack_settings_page', plugins_url('public/images/logo.png', plugin_basename(__FILE__)), 110);
+add_action('admin_menu', 'add_admin_pages_cos');
+function add_admin_pages_cos() {
+	add_menu_page('OfferStack Plugin', 'Offerstack', 'manage_options', 'clicksco_offerstack_plugin', 'offerstack_settings_page_cos', plugins_url('public/images/logo.png', plugin_basename(__FILE__)), 110);
 }
-function offerstack_settings_page() {
+function offerstack_settings_page_cos() {
 	require_once plugin_dir_path( __FILE__ ). 'templates/settings.php';
 }
 add_action( 'admin_init', function() {
@@ -83,26 +83,21 @@ add_action( 'admin_init', function() {
 /**
 * Curl call to get data from API
 */
-function get_offers_listing($offer_keyword, $widget_identifier, $max_iteams, $is_sidebar)
+function get_offers_listing_cos($offer_keyword, $widget_identifier, $max_iteams, $is_sidebar)
 {	
   	
   	include plugin_dir_path( __FILE__ ).'/config-offerstack.php';
-  	$offerstack_api_endpoint = $offerstack_api_endpoint."offers?query=".urlencode($offer_keyword).'&'.additional_param($widget_identifier);
-
-  	
-	$ch = curl_init();
-	$authorization = "Authorization: Bearer ".get_option('api_key');
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json' , $authorization ));
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_URL, $offerstack_api_endpoint);
-	$result=curl_exec($ch);
-	curl_close($ch);
+  	$offerstack_api_endpoint = $offerstack_api_endpoint."offers?query=".urlencode($offer_keyword).'&'.additional_param_cos($widget_identifier);
 
 
-	$offers_listing = json_decode($result, true);
+	$args = array(
+	    'headers' => array(
+	        'Authorization' => 'Bearer ' . get_option('api_key')
+	    )
+	);
+	$response = wp_remote_get( $offerstack_api_endpoint, $args );
+	$offers_listing = json_decode($response['body'], true);
 	
-
 	if($offers_listing != '') {
 		ob_start();
 			$selected_theme = esc_attr( get_option('offers_theme') );
@@ -117,15 +112,30 @@ function get_offers_listing($offer_keyword, $widget_identifier, $max_iteams, $is
 /**
 * get additional parameters from url to append in request for offers
 */
-function additional_param($widget_identifier = '') {
+function additional_param_cos($widget_identifier = '') {
+
+	$widget_identifier = sanitize_text_field($widget_identifier);
+
+	if(isset($_GET['utm_source']))
+		$utm_source = sanitize_text_field($_GET['utm_source']);
+	if(isset($_GET['utm_medium']))
+		$utm_medium = sanitize_text_field($_GET['utm_medium']);
+	if(isset($_GET['utm_term']))
+		$utm_term = sanitize_text_field($_GET['utm_term']);
+	if(isset($_GET['utm_content']))
+		$utm_content = sanitize_text_field($_GET['utm_content']);		
+	if(isset($_GET['utm_campaign']))
+		$utm_campaign = sanitize_text_field($_GET['utm_campaign']);		
+
+
 
 	$additional_param = [];
 	$additional_param[] = ($widget_identifier != '') ? 'identifier=' . $widget_identifier : '';
-	$additional_param[] = isset($_GET['utm_source']) ? 'utm_source=' . $_GET['utm_source'] : '';
-	$additional_param[] = isset($_GET['utm_medium']) ? 'utm_medium=' . $_GET['utm_medium'] : '';
-	$additional_param[] = isset($_GET['utm_term']) ? 'utm_term=' . $_GET['utm_term'] : '';
-	$additional_param[] = isset($_GET['utm_content']) ? 'utm_content=' . $_GET['utm_content'] : '';
-	$additional_param[] = isset($_GET['utm_campaign']) ? 'utm_campaign=' . $_GET['utm_campaign'] : '';
+	$additional_param[] = ($utm_source != '') ? 'utm_source=' . $utm_source : '';
+	$additional_param[] = ($utm_medium != '') ? 'utm_medium=' . $_GET['utm_medium'] : '';
+	$additional_param[] = ($utm_term != '') ? 'utm_term=' . $_GET['utm_term'] : '';
+	$additional_param[] = ($utm_content != '') ? 'utm_content=' . $_GET['utm_content'] : '';
+	$additional_param[] = ($utm_campaign != '') ? 'utm_campaign=' . $_GET['utm_campaign'] : '';
 	$additional_param = implode('&', array_filter($additional_param));
 
 	return $additional_param;

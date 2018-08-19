@@ -1,4 +1,4 @@
-# Offers Stack Wordpress Plugin
+# Clicksco Offers Stack Wordpress Plugin
 
 #### Install & Activate Plugin
 Add short code in editor or page to load offers 
