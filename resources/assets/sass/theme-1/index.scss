@@ -11,7 +11,7 @@
 			display: inline-block;
 			vertical-align: top;
 			text-align: center;
-    		padding: 18px;
+    		padding: 2px;
 			img {
 				width: auto;
 				height: 100%
@@ -53,7 +53,6 @@
 		}
 
 		.ribbon {
-			width: 40px;
 			font-size: 12px;
 		}
 
@@ -206,10 +205,11 @@
 			top: 10px;
 			background: $primary-color; 
 			color: #fff;
-			width: 60px;
+			width: 80px;
 			font-size: 14px;
 			line-height: 20px;
 			text-align: center;
+			white-space: nowrap;
 			
 			&:after {
 				content: "";
